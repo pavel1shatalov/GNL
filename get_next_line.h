@@ -6,7 +6,7 @@
 /*   By: ggerhold <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 14:28:22 by ggerhold          #+#    #+#             */
-/*   Updated: 2019/02/07 17:57:29 by ggerhold         ###   ########.fr       */
+/*   Updated: 2019/02/07 18:29:28 by ggerhold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define BUFF_SIZE 42
 
-# include "libft/libft.h"
+# include "libft/includes/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
