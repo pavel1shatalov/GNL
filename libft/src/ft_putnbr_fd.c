@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggerhold <ggerhold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 14:28:22 by ggerhold          #+#    #+#             */
-/*   Updated: 2019/05/04 16:09:41 by ggerhold         ###   ########.fr       */
+/*   Created: 2019/05/02 21:42:51 by ggerhold          #+#    #+#             */
+/*   Updated: 2019/05/02 21:42:51 by ggerhold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 42
+int		ft_putnbr_fd(int n, int fd)
+{
+	int	t;
 
-# include "libft/inc/libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return (11);
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		return (ft_putnbr_fd(-n, fd) + 1);
+	}
+	else if (n > 9)
+	{
+		t = ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + 48, fd);
+		return (t + 1);
+	}
+	ft_putchar_fd(n + 48, fd);
+	return (1);
+}

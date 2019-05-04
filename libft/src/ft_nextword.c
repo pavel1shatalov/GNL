@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_nextword.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggerhold <ggerhold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 14:28:22 by ggerhold          #+#    #+#             */
-/*   Updated: 2019/05/04 16:09:41 by ggerhold         ###   ########.fr       */
+/*   Created: 2019/05/02 21:42:23 by ggerhold          #+#    #+#             */
+/*   Updated: 2019/05/02 21:42:24 by ggerhold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 42
+char	*ft_nextword(char const *s, char c)
+{
+	int	i;
 
-# include "libft/inc/libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	i = -1;
+	if (!s || c == '\0')
+		return (NULL);
+	while (s[++i] && s[i] != c)
+		;
+	while (s[i] && s[i] == c)
+		i++;
+	if (!s[i])
+		return (NULL);
+	return ((char *)s + i);
+}

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strjoinch.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggerhold <ggerhold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 14:28:22 by ggerhold          #+#    #+#             */
-/*   Updated: 2019/05/04 16:09:41 by ggerhold         ###   ########.fr       */
+/*   Created: 2019/05/02 21:45:13 by ggerhold          #+#    #+#             */
+/*   Updated: 2019/05/02 21:45:14 by ggerhold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 42
+char	*ft_strjoinch(char **str, char c)
+{
+	char	*res;
 
-# include "libft/inc/libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if (!str || !(*str))
+		return (NULL);
+	res = ft_strnew(ft_strlen(*str) + 1);
+	if (!res)
+		return (NULL);
+	res = ft_strcpy(res, *str);
+	res = ft_strncat(res, &c, 1);
+	free(*str);
+	*str = NULL;
+	return (res);
+}

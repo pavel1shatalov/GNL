@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggerhold <ggerhold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 14:28:22 by ggerhold          #+#    #+#             */
-/*   Updated: 2019/05/04 16:09:41 by ggerhold         ###   ########.fr       */
+/*   Created: 2019/05/02 21:38:08 by ggerhold          #+#    #+#             */
+/*   Updated: 2019/05/02 21:38:10 by ggerhold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 42
+char	*ft_itoa(int n)
+{
+	int		i;
+	char	*res;
+	int		sign;
 
-# include "libft/inc/libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	sign = (n >= 0) ? 1 : -1;
+	i = ft_nbrlen(n) + ((sign > 0) ? 0 : 1);
+	if (!(res = ft_strnew(i)))
+		return (NULL);
+	sign < 0 ? res[0] = '-' : 0;
+	n == 0 ? res[0] = '0' : 0;
+	while (n)
+	{
+		i--;
+		res[i] = ((long)n * sign) % 10 + 48;
+		n /= 10;
+	}
+	return (res);
+}
